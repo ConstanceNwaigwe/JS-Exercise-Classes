@@ -180,11 +180,11 @@ class Airplane {
     }
     PRAssignment(subject){
       this.subject = subject;
-      return `student.name has submitted a PR for ${this.subject}`;
+      return `${this.name} has submitted a PR for ${this.subject}`;
     }
     sprintChallenge(subject){
       this.subject = subject;
-      return `student.name has begun sprint challenge on ${this.subject}`;
+      return `${this.name} has begun sprint challenge on ${this.subject}`;
     }
  }
   
