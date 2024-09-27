@@ -42,6 +42,25 @@ class Airplane {
   */
   
  class Person {
+    constructor(name, age){
+      this.name = name;
+      this.age = age;
+      this.stomach = [];
+    }
+    eat(something){
+      for (let i = 0; i <= 10; i++){
+        this.stomach.push(something);
+        if (this.stomach.length >= 10){
+          break;
+        }
+      };
+    }
+    poop(){
+      this.stomach = [];
+    }
+    toString(){
+      return `Hi My name is ${this.name}. I am ${this.age} years old.`;
+    }
     
   }
   
@@ -60,6 +79,22 @@ class Airplane {
   */
   
  class Car {
+    constructor(model, milesPerGallon){
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
+      this.tank = 0;
+      this.odometer = 0;
+    }
+    fill(gallons){
+      this.tank += gallons;
+    }
+    drive(distance){
+      this.odometer += distance;
+      this.tank -= this.milesPerGallon / distance;
+      if (this.tank <= 0){
+        return `I am out of fuel at ${this.odometer} miles`
+      };
+    }
     
   }
   
@@ -76,6 +111,14 @@ class Airplane {
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
+    constructor(obj){
+      this.name = obj.name;
+      this.age = obj.age;
+      this.location = obj.location;
+    }
+    speak(){
+      return `Hello my name is ${this.name}, I am from ${this.location}`;
+    }
     
   }
   
@@ -93,8 +136,22 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
-
+ class Instructor extends Lambdasian{
+    constructor(obj){
+      super(obj);
+      this.specialty = obj.specialty;
+      this.favLanguage = obj.favLanguage;
+      this.catchPhrase = obj.catchPhrase;
+    }
+    demo(subject){
+      this.subject = subject;
+      return `Today we are learning about ${this.subject}`;
+    }
+    grade(student, subject){
+      this.student = student;
+      this.subject = subject;
+      return `${this.student.name} receives a perfect score on ${this.subject}`;
+    }
  }
   /*
     TASK 5
@@ -111,8 +168,24 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian{
+     constructor(obj){
+      super(obj);
+      this.previousBackground = obj.previousBackground;
+      this.className = obj.className;
+      this.favSubjects = obj.favSubjects;
+    }
+    listSubjects(){
+      return `My favorite subjects are ${this.favSubjects}`;
+    }
+    PRAssignment(subject){
+      this.subject = subject;
+      return `${this.name} has submitted a PR for ${this.subject}`;
+    }
+    sprintChallenge(subject){
+      this.subject = subject;
+      return `${this.name} has begun sprint challenge on ${this.subject}`;
+    }
  }
   
   /*
@@ -128,8 +201,21 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor{
+     constructor(obj){
+      super(obj);
+      this.gradClassName = obj.gradClassName;
+      this.favInstructor = obj.favInstructor;
+    }
+    standUp(channel){
+      this.channel = channel;
+      return `${this.name} announces to ${this.channel}, @channel standy times!`;
+    }
+    debugsCode(student, subject){
+      this.student = student;
+      this.subject = subject;
+      return `${this.name} debugs ${this.student.name}'s code on ${this.subject}`;
+    }
  }
   /*
     STRETCH PROBLEM (no tests!)
